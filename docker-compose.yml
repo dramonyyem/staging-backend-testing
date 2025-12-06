@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: supertokens
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  supertokens-core:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql:latest
+    container_name: supertokens-core
+    depends_on:
+      - postgres
+    restart: always
+    environment:
+      POSTGRESQL_HOST: postgres
+      POSTGRESQL_PORT: 5432
+      POSTGRESQL_USER: postgres
+      POSTGRESQL_PASSWORD: your_password
+      POSTGRESQL_DATABASE: supertokens
+    ports:
+      - "3567:3567"
+
+volumes:
+  postgres_data:
+
+
+
