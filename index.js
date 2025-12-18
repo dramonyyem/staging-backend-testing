@@ -15,7 +15,6 @@ app.use(cors(corsConfig));
 app.use(express.json());
 
 app.use("/", publicRoutes);
-app.use("/", authGuard, privateRoutes);
 app.get("/products", (req, res) => {
   const data = [
     {
@@ -35,8 +34,6 @@ app.get("/products", (req, res) => {
   res.json(data);
 });
 
-
-
 app.post("/user", (req, res) => {
   const data = req.body;
 
@@ -44,6 +41,9 @@ app.post("/user", (req, res) => {
 });
 
 app.get("/", (req, res) => res.send("hello backend!!"));
+
+app.use("/", authGuard, privateRoutes);
+
 
 // app.use(errorHandler());
 
