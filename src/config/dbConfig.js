@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { hashPassword } = require("../utils/convertPassword");
 require("./dotenvConfig"); // Make sure this correctly loads your .env file
 
 const MONGO_URI = process.env.MONGO_URI;
@@ -14,8 +15,12 @@ const connectMongoDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
-    console.log("✅ MongoDB connected successfully!");
+    const hashedPassword = await hashPassword("Mony2001");
+    await new User({
+      username: "daramony",
+      password: hashedPassword,
+      email: "daramony@gmail.com",
+    });
   } catch (error) {
     console.error("❌ MongoDB connection error:", error.message);
     process.exit(1); // Exit the process if DB connection fails

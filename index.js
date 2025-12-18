@@ -8,25 +8,34 @@ const { connectMongoDB } = require("./src/config/dbConfig");
 ;
 const authGuard = require("./src/middleware/authGuard");
 const app = express();
-connectMongoDB();
+// connectMongoDB();
 
 app.use(cors(corsConfig));
 
 app.use(express.json());
 
 app.use("/", publicRoutes);
-
 app.use("/", authGuard, privateRoutes);
+app.get("/products", (req, res) => {
+  const data = [
+    {
+      id: "1",
+      name: "Yem Daramony",
+    },
+    {
+      id: "2",
+      name: "Product Two",
+    },
+    {
+      id: "3",
+      name: "Product Three",
+    },
+  ];
 
-app.get("/ping", (req, res) => {
-  const sample = {
-    id: "1",
-    name: "Yem Daramony",
-  };
-  res.json({
-    sample,
-  });
+  res.json(data);
 });
+
+
 
 app.post("/user", (req, res) => {
   const data = req.body;
@@ -39,5 +48,5 @@ app.get("/", (req, res) => res.send("hello backend!!"));
 // app.use(errorHandler());
 
 app.listen(port, () => {
-  console.log(`🚀 Server running on http://localhost:${port}`);
+  console.log(`🚀 Server running on `);
 });

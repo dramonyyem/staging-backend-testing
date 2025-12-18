@@ -5,30 +5,29 @@ const { hashPassword, verifyPassword } = require("../utils/convertPassword");
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log(username,password)
+    // const user = await User.findOne({
+    //   username: username,
+    // });
 
-    const user = await User.findOne({
-      username: username,
-    });
+    // consol.log(user);
+    // if (!user) {
+    //   return res.json({
+    //     status: false,
+    //   });
+    //   // throw new Error("User not found !!");
+    // }
 
-    consol.log(user);
-    if (!user) {
-      return res.json({
-        status: false,
-      });
-      // throw new Error("User not found !!");
-    }
+    // const isVerified = await verifyPassword(password, user.password);
 
-    const isVerified = await verifyPassword(password, user.password);
+    // if (!isVerified) {
+    //   return res.json({
+    //     status: false,
+    //   });
+    //   // throw new Error("User not found !!");
+    // }
 
-    if (!isVerified) {
-      return res.json({
-        status: false,
-      });
-      // throw new Error("User not found !!");
-    }
-
-    
-
+  
     return res.json({
       status: true,
     });
