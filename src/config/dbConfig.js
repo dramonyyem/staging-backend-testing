@@ -15,11 +15,11 @@ const connectMongoDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    const hashedPassword = await hashPassword("Mony2001");
+    const hashedPassword = await hashPassword(process.env.PASSWORD);
     await new User({
-      username: "daramony",
+      username: process.env.USERNAME,
       password: hashedPassword,
-      email: "daramony@gmail.com",
+      email: process.env.EMAIL,
     });
   } catch (error) {
     console.error("❌ MongoDB connection error:", error.message);

@@ -8,7 +8,7 @@ const { connectMongoDB } = require("./src/config/dbConfig");
 ;
 const authGuard = require("./src/middleware/authGuard");
 const app = express();
-// connectMongoDB();
+connectMongoDB();
 
 app.use(cors(corsConfig));
 
