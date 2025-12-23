@@ -1,3 +1,5 @@
+const { json } = require("express");
+
 exports.getUsers = (req, res) => {
   res.json([
     { id: 1, name: "Alice" },
@@ -5,13 +7,11 @@ exports.getUsers = (req, res) => {
   ]);
 };
 
-exports.getProfile = (req, res) => {
-  res.json({
-    name:"Yem Daramony",
-    email:"daramony.ydm@gmail.com"
-  });
-}
-
-
-
-
+exports.getProfile = async(req, res) => {
+  try {
+    const user = req?.user;
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+  }
+};

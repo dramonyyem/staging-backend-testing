@@ -12,7 +12,6 @@ const verifyPassword = async(plainPassword,hashedPassword) => {
     return isVerified;
 }
 
-
 module.exports = {
     hashPassword,
     verifyPassword
