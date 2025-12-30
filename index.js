@@ -22,7 +22,7 @@ app.post("/user", (req, res) => {
   res.json({ data });
 });
 
-app.get("/", (req, res) => res.send("hello backend!!"));
+app.get("/", (req, res) => res.send("this is staging"));
 
 app.use("/", authGuard, privateRoutes);
 
